@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="Home description" content="Home">
+    <meta name="keywords" content="HTML CSS Tutorial Hướng dẫn">
+    <meta name="author" content="Nguyễn Hiền">
+    <meta name="viewport" content="width=device -width, initial- scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        #container {
+            width: 760px;
+            margin: 0px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="col-md-12">
+            <div style="text-align:center ;margin-top: 30px;">
+                <img src="images/logo.jpg" height="50px" width="50px">
+                <h1> <b>TRƯỜNG THPT LÝ NAM ĐẾ</b></h1>
+                <h2 style="color: red;">XÁC ĐỊNH TÌNH TRẠNG SỨC KHỎE HỌC SINH</h2>
+                <img src="images/bmi-185-23.jpg" height="200px" width="500px"></img>
+                <h3>(Vui lòng điền đủ thông tin)</h3>
+            </div>
+            <div class="form-horizontal" style="border:1px solid #ccc ;">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend style="padding:5px 10px ;">Thông tin sức khỏe</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Năm sinh</label>
+                        <div class="col-md-5">
+                            <input id="textinput" name="textinput" type="text" placeholder="Nhập vào năm sinh của bạn"
+                                class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="sex">Giới tính</label>
+                        <div class="col-md-5">
+                            <select id="sex" name="sex" class="form-control">
+                                <option value="nam">Nam</option>
+                                <option value="nu">Nữ</option>
+                                <option value="khac">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="height">Chiều cao</label>
+                        <div class="col-md-5">
+                            <input id="height" name="height" type="text"
+                                placeholder="Nhập vào chiều cao của bạn (đơn vị: cm)" class="form-control input-md"
+                                required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="weight">Cân nặng</label>
+                        <div class="col-md-5">
+                            <input id="weight" name="weight" type="text"
+                                placeholder="Nhập vào cân nặng của bạn (đơn vị: kg)" class="form-control input-md"
+                                required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="button"></label>
+                        <div class="col-md-4">
+                            <button id="button" name="button" class="btn btn-primary" onclick="calculateHealthStatus()">Tính toán</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <div id="result" style="text-align: center;margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <script>
+       function calculateHealthStatus() {
+            var height = document.getElementById("height").value;
+            var weight = document.getElementById("weight").value;
+            console.log("dd:" + height);
+            if (height <= 0 || weight <= 0) {
+                document.getElementById("result").innerHTML = "Vui lòng nhập giá trị hợp lệ.";
+                return;
+            }
+            var bmi = weight / ((height / 100) * (height / 100));
+            var healthStatus;
+            var healthStaus2 ="";
+            if (bmi < 18.5) {
+                healthStatus = "Thiếu cân";
+                healthStaus2 ="Bạn nên ăn uống đầy đủ và tập trung vào chế độ dinh dưỡng.";
+            } else if (bmi >= 18.5 && bmi < 25) {
+                healthStatus = "Bình thường";
+                healthStaus2 = "Cơ thể bạn đang trong trạng thái tốt, hãy duy trì chế độ sinh hoạt lành mạnh.";
+            } else if (bmi >= 25 && bmi < 30) {
+                healthStatus = "Thừa cân";
+                healthStaus2 ="Bạn nên xem xét điều chỉnh chế độ ăn uống và tập luyện để giảm cân.";
+            } else {
+                healthStatus = "Béo phì";
+                healthStaus2 ="Bạn cần chú ý giảm cân ngay, tham khảo ý kiến bác sĩ để có chế độ tập luyện và dinh dưỡng phù hợp."
+            }
+            document.getElementById("result").innerHTML = "Chỉ số BMI của bạn là: <b>" + bmi.toFixed(2) + "</b>, và tình trạng sức khỏe của bạn là: <b>" + healthStatus +"</b>.<br>" +healthStaus2;
+        }
+    </script>
+</body>
+
+</html>
